@@ -2,7 +2,7 @@ name: Docker Image CI
 
 on:
   release:
-    types: [published]
+    types: [push]
 
 jobs:
   docker:
@@ -33,7 +33,7 @@ jobs:
           context: ./client
           platforms: linux/amd64
           push: true
-          tags: tonoid/plaid-client:latest,tonoid/plaid-client:${{steps.vars.outputs.tag}}
+          tags: tonoid/plaid-client:latest
       -
         name: Build server
         uses: docker/build-push-action@v2
@@ -41,4 +41,4 @@ jobs:
           context: ./server
           platforms: linux/amd64
           push: true
-          tags: tonoid/plaid-server:latest,tonoid/plaid-server:${{steps.vars.outputs.tag}}
+          tags: tonoid/plaid-server:latest
