@@ -33,7 +33,7 @@ jobs:
           context: ./client
           platforms: linux/amd64
           push: true
-          tags: tonoid/plaid-client:latest
+          tags: plaid-client:latest
       -
         name: Build server
         uses: docker/build-push-action@v2
@@ -41,4 +41,4 @@ jobs:
           context: ./server
           platforms: linux/amd64
           push: true
-          tags: tonoid/plaid-server:latest
+          tags: plaid-server:latest
