@@ -12,6 +12,9 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v2
+      - name: Get the version
+        id: vars
+        run: echo ::set-output name=tag::$(echo ${GITHUB_SHA:7})
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -31,7 +34,7 @@ jobs:
           context: ./client
           platforms: linux/amd64
           push: true
-          tags: melalj/plaid-client:latest,melalj/plaid-client:${GITHUB_SHA::7}
+          tags: melalj/plaid-client:latest,melalj/plaid-client:${{steps.vars.outputs.tag}}
       -
         name: Build plaid-server
         uses: docker/build-push-action@v2
@@ -39,4 +42,4 @@ jobs:
           context: ./server
           platforms: linux/amd64
           push: true
-          tags: melalj/plaid-server:latest,melalj/plaid-server:${GITHUB_SHA::7}
+          tags: melalj/plaid-server:latest,melalj/plaid-server:${{steps.vars.outputs.tag}}
