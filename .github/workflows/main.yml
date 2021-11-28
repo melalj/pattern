@@ -34,7 +34,7 @@ jobs:
           context: ./client
           platforms: linux/amd64
           push: true
-          tags: plaid-client:latest
+          tags: melalj/plaid-client:latest
       -
         name: Build plaid-server
         uses: docker/build-push-action@v2
@@ -42,4 +42,4 @@ jobs:
           context: ./server
           platforms: linux/amd64
           push: true
-          tags: plaid-server:latest
+          tags: melalj/plaid-server:latest
