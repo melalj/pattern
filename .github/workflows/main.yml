@@ -28,7 +28,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
       -
-        name: Build client
+        name: Build plaid-client
         uses: docker/build-push-action@v2
         with:
           context: ./client
@@ -36,7 +36,7 @@ jobs:
           push: true
           tags: plaid-client:latest
       -
-        name: Build server
+        name: Build plaid-server
         uses: docker/build-push-action@v2
         with:
           context: ./server
