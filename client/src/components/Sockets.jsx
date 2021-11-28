@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 
 import { useAccounts, useItems, useTransactions } from '../services';
 const io = require('socket.io-client');
-const { REACT_APP_SERVER_PORT } = process.env;
+const { REACT_APP_WS_SERVER } = process.env;
 
 export default function Sockets() {
   const socket = useRef();
@@ -12,7 +12,7 @@ export default function Sockets() {
   const { getItemById } = useItems();
 
   useEffect(() => {
-    socket.current = io(`localhost:${REACT_APP_SERVER_PORT}`);
+    socket.current = io(REACT_APP_WS_SERVER);
 
     socket.current.on('DEFAULT_UPDATE', ({ itemId } = {}) => {
       const msg = `New Webhook Event: Item ${itemId}: New Transactions Received`;
